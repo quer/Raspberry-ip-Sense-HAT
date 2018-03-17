@@ -1,31 +1,37 @@
 var PythonShell = require('python-shell');
-var pyshell = new PythonShell('SenseHat.py');
 
-var send = { 
-	x: random(0, 7),
-	y: random(0, 7),
-	r: random(0, 255),
-	g: random(0, 255),
-	b: random(0, 255)
-}
+setTimeout(function(){ 
+	startColor({ 
+		x: random(0, 7),
+		y: random(0, 7),
+		r: random(0, 255),
+		g: random(0, 255),
+		b: random(0, 255)
+	});
+}, 100);
 
-console.log(send);
-pyshell.send( JSON.stringify(send) );
-
-pyshell.on('message', function (message) {
-  	// received a message sent from the Python script (a simple "print" statement)
-	console.log("--python--");
-  	console.log(message);
-});
-
-
-pyshell.end(function (err,code,signal) {
-  if (err) throw err;
-  console.log('The exit code was: ' + code);
-  console.log('The exit signal was: ' + signal);
-  console.log('finished');
-  console.log('finished');
-});
 function random(min, max) {
 	return Math.floor(Math.random() * max) + min;  
+}
+
+
+function startColor(color) {
+	var pyshell = new PythonShell('SenseHat.py');
+
+	console.log(color);
+	pyshell.send( JSON.stringify(color) );
+
+	pyshell.on('message', function (message) {
+	  	// received a message sent from the Python script (a simple "print" statement)
+		console.log("--python--");
+	  	console.log(message);
+	});
+
+
+	pyshell.end(function (err,code,signal) {
+		if (err) throw err;
+		console.log('The exit code was: ' + code);
+		console.log('The exit signal was: ' + signal);
+		console.log('finished');
+	});
 }
