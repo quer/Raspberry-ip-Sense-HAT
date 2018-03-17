@@ -3,6 +3,8 @@ from sense_hat import SenseHat
 from random import randint
 from time import sleep
 
+sense = SenseHat()
+
 for line in sys.stdin:
 	data = json.loads(line[:-1])
 	print data['x']
