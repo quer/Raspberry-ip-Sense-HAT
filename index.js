@@ -8,7 +8,7 @@ var myVar = setInterval(function(){
 		g: random(0, 255),
 		b: random(0, 255)
 	});
-}, 100);
+}, 500);
 
 function random(min, max) {
 	return Math.floor(Math.random() * max) + min;  
