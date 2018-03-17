@@ -1,6 +1,6 @@
 var PythonShell = require('python-shell');
 
-setTimeout(function(){ 
+var myVar = setInterval(function(){ 
 	startColor({ 
 		x: random(0, 7),
 		y: random(0, 7),
@@ -30,8 +30,8 @@ function startColor(color) {
 
 	pyshell.end(function (err,code,signal) {
 		if (err) throw err;
-		console.log('The exit code was: ' + code);
-		console.log('The exit signal was: ' + signal);
+		//console.log('The exit code was: ' + code);
+		//console.log('The exit signal was: ' + signal);
 		console.log('finished');
 	});
 }
